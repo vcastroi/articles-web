@@ -3,11 +3,11 @@
 Frontend for **Articles and Authors**, using React with hooks, react-router, formik, bootstrap 4.  
 *Requires npm or yarn*
 
-use **[articles-api](https://github.com/vcastroi/articles-api)**  as the backend.
-
+* uses **[articles-api](https://github.com/vcastroi/articles-api)**  as the backend.
 
 To run the frontend in **dev mode** execute:
 ```
+npm install  
 npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
