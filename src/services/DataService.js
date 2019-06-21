@@ -3,9 +3,11 @@ import axios from 'axios';
 const baseURL = 'http://localhost:9090/api';
 
 class DataService {
-	
-    
-    searchArticles(title, authors) {
+	getUrl() {
+		return baseURL;
+	}
+
+	searchArticles(title, authors) {
 		return axios.get(`${baseURL}/article?title=${title}&&authors=${authors}`);
 	}
 
@@ -19,13 +21,13 @@ class DataService {
 		} else {
 			return axios.post(`${baseURL}/article`, article);
 		}
-    }
-    
-    deleteArticle(id){
-        return axios.delete(`${baseURL}/article/${id}`)
-    }
+	}
 
-    listAuthors(){
+	deleteArticle(id) {
+		return axios.delete(`${baseURL}/article/${id}`);
+	}
+
+	listAuthors() {
 		return axios.get(`${baseURL}/author`);
 	}
 
@@ -39,11 +41,11 @@ class DataService {
 		} else {
 			return axios.post(`${baseURL}/author`, author);
 		}
-    }
-    
-    deleteAuthor(id){
-        return axios.delete(`${baseURL}/author/${id}`)
-    }
+	}
+
+	deleteAuthor(id) {
+		return axios.delete(`${baseURL}/author/${id}`);
+	}
 }
 
 export default new DataService();
