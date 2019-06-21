@@ -9,9 +9,6 @@ import AuthorEdit from './AuthorEdit';
 export default function AuthorPage(props) {
 	const [ data, refreshData, status, loading, error ] = useGetRequest({ getFn: Api.listAuthors, delay: 1000 });
 
-	console.log(status);
-	console.log(JSON.stringify(error, null, 2));
-
 	return (
 		<div className="AuthorPage">
 			{error && (

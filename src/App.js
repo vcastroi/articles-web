@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import './App.css';
 
@@ -22,7 +22,7 @@ function App() {
 							<Route path="/authors" component={AuthorPage} />
 							<Route path="/articles" component={ArticlePage} />
 							<Route path="/about" component={AuthorPage} />
-							<Route path="/" component={AuthorPage}  />
+              <Redirect exact from="/" to="/authors" />
 						</Switch>
 					</Col>
 				</Router>
