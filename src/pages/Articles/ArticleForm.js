@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Form, Container, Row, Col, Button, Alert, DropdownButton, Dropdown } from 'react-bootstrap';
+import {
+	Form,
+	Container,
+	Row,
+	Col,
+	Button,
+	Alert,
+	DropdownButton,
+	Dropdown,
+	OverlayTrigger,
+	Tooltip
+} from 'react-bootstrap';
 import { Formik } from 'formik';
 
 import { useInterval, useGetRequest } from '../../hooks';
@@ -89,12 +100,14 @@ export default function ArticleForm(props) {
 											value={values.longDescription}
 											onChange={handleChange}
 											as="textarea"
-											rows="3"
+											rows="5"
 										/>
 									</Col>
 								</Form.Group>
 
-								<Form.Label>Authors</Form.Label>
+								<Form.Label>
+									<strong>Authors:</strong>
+								</Form.Label>
 								<Form.Group as={Row}>
 									<Col>
 										{values.authors &&
@@ -105,7 +118,7 @@ export default function ArticleForm(props) {
 													</Form.Label>
 													<Button
 														size="sm"
-														variant="danger"
+														variant="outline-danger"
 														style={{ marginLeft: 10 }}
 														onClick={() => {
 															values.authors = values.authors.filter(
@@ -120,7 +133,7 @@ export default function ArticleForm(props) {
 												</div>
 											))}
 									</Col>
-									<Col sm="auto">
+									<Col>
 										<DropdownButton title="Assign Author">
 											{authorsNotAlreadyAssigned &&
 												authorsNotAlreadyAssigned.map((a) => (
@@ -140,15 +153,26 @@ export default function ArticleForm(props) {
 									</Col>
 								</Form.Group>
 
-								<Row style={{ marginTop: 15 }}>
+								<Dropdown.Divider />
+								<Row style={{ marginTop: 25 }}>
 									<Col sm="auto">
-										<Button
-											onClick={() => deleteArticle(values.id)}
-											variant="danger"
-											style={{ marginRight: 30 }}
+										<OverlayTrigger
+											placement="bottom"
+											overlay={
+												<Tooltip id={`tooltip-delete`}>
+													Delete article #{values.id}, cannot be undone.
+												</Tooltip>
+											}
 										>
-											delete
-										</Button>
+											<Button
+												onClick={() => deleteArticle(values.id)}
+												variant="danger"
+												style={{ marginRight: 30 }}
+												disabled={!values.id}
+											>
+												delete
+											</Button>
+										</OverlayTrigger>
 									</Col>
 									<Col />
 									<Col sm="auto">
