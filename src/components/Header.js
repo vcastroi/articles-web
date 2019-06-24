@@ -9,7 +9,7 @@ export default function Header(props) {
 			<Row>
 				<Col>
 					<h1>Articles &amp; Authors</h1>
-					<h4>A Simple React Frontend to manage your articles API.</h4>
+					<h4>A Simple React Frontend to manage your articles.</h4>
 				</Col>
 				<Col xs={2}>
 					<Button href={Api.getUrl() + '/swagger-ui.html'} target="_blank" variant="info">

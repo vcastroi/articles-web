@@ -30,6 +30,7 @@ export default function useGetRequest(props) {
 		},
 		[ refreshData ]
 	);
+
 	// We put our delay into a state hook because we need to be able to toggle it between our delay and a null value.
 	// A null value will stop the useInterval from running.
 	useInterval(() => {

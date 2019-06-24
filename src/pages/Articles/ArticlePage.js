@@ -1,34 +1,19 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
+import ArticleList from './ArticleList';
+import ArticleEdit from './ArticleEdit';
 
 export default function ArticlePage(props) {
+	const { match } = props;
 	return (
 		<div className="ArticlePage">
-			<h2> Articles</h2>
-
-			<Table   hover >
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Article</th>
-						<th>Authors</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td><p class="font-weight-bold">Bold text.</p>
-						<p class="font-weight-light">Light weight text.</p>
-						</td>
-						<td>1
-							2
-						</td>
-						<td>Edit</td>
-					</tr>
-					
-				</tbody>
-			</Table>
+			<Switch>
+				<Route exact path={`${match.path}/`} component={ArticleList} />
+				<Route exact path={`${match.path}/new`} component={ArticleEdit} />
+				<Route exact path={`${match.path}/:id`} component={ArticleEdit} />
+				<Redirect to="/" />
+			</Switch>
 		</div>
 	);
 }

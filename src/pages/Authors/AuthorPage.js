@@ -7,7 +7,11 @@ import AuthorNew from './AuthorNew';
 import AuthorEdit from './AuthorEdit';
 
 export default function AuthorPage(props) {
-	const [ data, refreshData, status, loading, error ] = useGetRequest({ getFn: Api.listAuthors, delay: 1000 });
+	const [ data, refreshData, status, loading, error ] = useGetRequest({
+		getFn: Api.listAuthors,
+		fnParams: null,
+		delay: 1000
+	});
 
 	return (
 		<div className="AuthorPage">

@@ -5,6 +5,9 @@ import { Formik } from 'formik';
 import { useInterval } from '../../hooks';
 import { Api } from '../../services';
 
+//note: we can remove formik from this component
+//      as this a very simple form than can be manage with local state, and be much simpler
+
 export default function AuthorEdit(props) {
 	const { author, refreshData } = props;
 	const [ error, setError ] = useState(null);
@@ -29,7 +32,9 @@ export default function AuthorEdit(props) {
 				refreshData();
 			})
 			.catch((error) => {
-				setError(error);
+				delete error.response.data.stackTrace;
+				if (error.response.data.message) setError(error.response.data);
+				else setError(error);
 				setWait(2000);
 			});
 	};

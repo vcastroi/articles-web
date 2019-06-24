@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:9090/api';
+const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:9090/api';
 
 class DataService {
 	getUrl() {
@@ -45,6 +45,10 @@ class DataService {
 
 	deleteAuthor(id) {
 		return axios.delete(`${baseURL}/author/${id}`);
+	}
+
+	runDbSeed(id) {
+		return axios.get(`${baseURL}/seed`);
 	}
 }
 
